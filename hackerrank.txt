@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+
+class Result {
+
+    /*
+     * Complete the 'plusMinus' function below.
+     *
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+    public static void plusMinus(List<Integer> integerArray) {
+        int countPositiveNumbers = 0;
+        int countNegativeNumbers = 0;
+        int countZeroNumbers = 0;
+        int totalNumbers = integerArray.size();
+
+        for (int currentNumber : integerArray) {
+            if (currentNumber > 0) {
+                countPositiveNumbers++;
+            } else if (currentNumber < 0) {
+                countNegativeNumbers++;
+            } else {
+                countZeroNumbers++;
+            }
+        }
+
+        double ratioOfPositiveNumbers = (double) countPositiveNumbers / totalNumbers;
+        double ratioOfNegativeNumbers = (double) countNegativeNumbers / totalNumbers;
+        double ratioOfZeroNumbers = (double) countZeroNumbers / totalNumbers;
+
+        System.out.printf("%.6f%n", ratioOfPositiveNumbers);
+        System.out.printf("%.6f%n", ratioOfNegativeNumbers);
+        System.out.printf("%.6f%n", ratioOfZeroNumbers);
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int sizeOfArray = Integer.parseInt(inputReader.readLine().trim());
+
+        String[] arrayTemp = inputReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> integerArray = new ArrayList<>();
+
+        for (int index = 0; index < sizeOfArray; index++) {
+            int arrayItem = Integer.parseInt(arrayTemp[index]);
+            integerArray.add(arrayItem);
+        }
+
+        Result.plusMinus(integerArray);
+
+        inputReader.close();
+    }
+}
